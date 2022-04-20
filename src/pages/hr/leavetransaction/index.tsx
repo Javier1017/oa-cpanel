@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button, notification } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
@@ -8,14 +8,12 @@ import { leaveTransactions } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
 import Details from './components/details';
+import AddLeave from './components/addLeave';
 
 const LeaveTransaction: FC = () => {
   const [data, setData] = useState<LeaveTransactionItem | null>(null);
   const [showDetails, setShowDetails] = useState(false);
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  const [showAdd, setShowAdd] = useState(false);
 
   const paginationProps = {
     showSizeChanger: true,
@@ -53,6 +51,11 @@ const LeaveTransaction: FC = () => {
     closeDetails();
     openNotification('Approved!');
     console.log('approve');
+  };
+
+  const submit = () => {
+    openNotification('Added!');
+    setShowAdd(false);
   };
 
   const columns: ProColumns<LeaveTransactionItem>[] = [
@@ -120,7 +123,7 @@ const LeaveTransaction: FC = () => {
   ];
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />}>
+    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => setShowAdd(true)}>
       Add
     </Button>,
     <Button key="export">Export</Button>,
@@ -149,6 +152,7 @@ const LeaveTransaction: FC = () => {
         approve={approve}
         close={closeDetails}
       />
+      <AddLeave visible={showAdd} close={() => setShowAdd(false)} submit={() => submit()} />
     </PageContainer>
   );
 };
