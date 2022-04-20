@@ -142,7 +142,13 @@ const LeaveTransaction: FC = () => {
         options={false}
         toolBarRender={() => toolBar}
       />
-      <Details data={data} show={showDetails} reject={reject} approve={approve} />
+      <Details
+        data={data}
+        show={showDetails}
+        reject={reject}
+        approve={approve}
+        close={closeDetails}
+      />
     </PageContainer>
   );
 };
