@@ -33,7 +33,7 @@
         component: './payroll/',
       },
       {
-        path: '/hr',
+        path: 'hr',
         name: 'HR',
         routes: [
           {
@@ -42,42 +42,42 @@
           },
           {
             name: 'Leave Transaction',
-            path: '/hr/leavetransaction',
+            path: 'leavetransaction',
             component: './hr/leavetransaction',
           },
           {
             name: 'Leave Balance',
-            path: '/hr/leavebalance',
+            path: 'leavebalance',
             component: './hr/leavebalance',
           },
           {
             name: 'Claim Transaction',
-            path: '/hr/claimtransaction',
+            path: 'claimtransaction',
             component: './hr/claimtransaction',
           },
         ],
       },
       {
-        path: '/employeeManagement',
+        path: 'employeeManagement',
         name: 'Employee Management',
         routes: [
           {
-            path: '/employeeManagement',
+            path: 'employeeManagement',
             redirect: '/employeeManagement/attendance',
           },
           {
             name: 'Attendance Lists',
-            path: '/employeemanagement/attendance',
+            path: 'employeemanagement/attendance',
             component: './employeeManagement/attendance',
           },
           {
             name: 'Work Report Lists',
-            path: '/employeeManagement/workreport',
+            path: 'employeeManagement/workreport',
             component: './employeeManagement/workreport',
           },
           {
             name: 'Assets Lists',
-            path: '/employeeManagement/assets',
+            path: 'employeeManagement/assets',
             component: './employeeManagement/assets',
           },
         ],
@@ -89,7 +89,7 @@
     name: 'Setup',
     routes: [
       {
-        path: '/employee',
+        path: 'employee',
         name: 'Employee',
         routes: [
           {
@@ -98,57 +98,57 @@
           },
           {
             name: 'Employee Setup',
-            path: '/employee/employee',
+            path: 'employee/employee',
             component: './employee/employee',
           },
           {
             name: 'Attendance Setup',
-            path: '/employee/attendance',
+            path: 'employee/attendance',
             component: './employee/attendance',
           },
           {
             name: 'Work Report Setup',
-            path: '/employee/workreport',
+            path: 'employee/workreport',
             component: './employee/workreport',
           },
           {
             name: 'Qualifications',
-            path: '/employee/qualifications',
+            path: 'employee/qualifications',
             component: './employee/qualifications',
           },
         ],
       },
       {
-        path: '/company',
+        path: 'company',
         name: 'Company',
         routes: [
           {
-            path: '/company',
+            path: 'company',
             redirect: '/company/companyprofile',
           },
           {
             name: 'Company Profile',
-            path: '/company/companyprofile',
+            path: 'company/companyprofile',
             component: './company/companyprofile',
           },
           {
             name: 'Department',
-            path: '/company/department',
+            path: 'company/department',
             component: './company/department',
           },
           {
             name: 'Calendar',
-            path: '/company/calendar',
+            path: 'company/calendar',
             component: './company/calendar',
           },
           {
             name: 'Leave Setup',
-            path: '/company/leavesetup',
+            path: 'company/leavesetup',
             component: './company/leavesetup',
           },
           {
             name: 'Leave Setting',
-            path: '/company/leavesetting',
+            path: 'company/leavesetting',
             component: './company/leavesetting',
           },
           {
@@ -158,27 +158,27 @@
           },
           {
             name: 'Claim Setup',
-            path: '/company/claimsetup',
+            path: 'company/claimsetup',
             component: './company/claimsetup',
           },
           {
             name: 'Claim Setting',
-            path: '/company/claimsetting',
+            path: 'company/claimsetting',
             component: './company/claimsetting',
           },
           {
             name: 'Assets Setup',
-            path: '/company/assets',
+            path: 'company/assets',
             component: './company/assets',
           },
           {
             name: 'Library',
-            path: '/company/library',
+            path: 'company/library',
             component: './company/library',
           },
           {
             name: 'Setting',
-            path: '/company/setting',
+            path: 'company/setting',
             component: './company/setting',
           },
         ],
