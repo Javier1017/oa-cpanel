@@ -6,6 +6,7 @@ import { Button, Image } from 'antd';
 import styles from './index.less';
 import moment from 'moment';
 import PreviewModal from '../preview';
+import RejectModal from '../reject';
 
 interface propsData {
   data: LeaveTransactionItem | null;
@@ -28,6 +29,7 @@ const formatDuration = ({ to, from }: Duration) => {
 const Details = ({ data, show, reject, approve, close }: propsData) => {
   const [showPreview, setShowPreview] = useState(false);
   const [currentImg, setCurrentImg] = useState('');
+  const [showReject, setShowReject] = useState(false);
 
   const preview = (src: string) => {
     setCurrentImg(src);
@@ -50,16 +52,26 @@ const Details = ({ data, show, reject, approve, close }: propsData) => {
     setCurrentImg('');
   };
 
+  const confirmReject = () => {
+    setShowReject(false);
+    reject();
+  };
+
   return (
     <>
       <PreviewModal image={currentImg} visible={showPreview} close={closePreview} />
+      <RejectModal
+        visible={showReject}
+        close={() => setShowReject(false)}
+        confirm={() => confirmReject()}
+      />
       <ModalForm
         title={false}
         visible={show}
         modalProps={{ destroyOnClose: true, onCancel: () => close() }}
         submitter={{
           render: () => [
-            <Button type="primary" danger key="reject" onClick={() => reject()}>
+            <Button type="primary" danger key="reject" onClick={() => setShowReject(true)}>
               Reject
             </Button>,
             <Button type="primary" key="approve" onClick={() => approve()}>
