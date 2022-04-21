@@ -1,18 +1,54 @@
 import type { FC } from 'react';
-import { Button } from 'antd';
+import { useState } from 'react';
+import { Button, notification } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ClaimTransactionItem, Pagination } from './data';
 import { claimTransaction } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import Details from './components/details';
 
 const LeaveTransaction: FC = () => {
+  const [data, setData] = useState<ClaimTransactionItem | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
+
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
     pageSize: 10,
     // total: list.length,
+  };
+
+  const view = (row: ClaimTransactionItem) => {
+    setData(row);
+    setShowDetails(true);
+  };
+
+  const closeDetails = () => {
+    setData(null);
+    setShowDetails(false);
+  };
+
+  const openNotification = (message: string) => {
+    notification.success({
+      message,
+      description: '',
+      duration: 2,
+      // icon: <CheckOutlined style={{ color: '#108ee9' }} />,
+    });
+  };
+
+  const reject = () => {
+    closeDetails();
+    openNotification('Rejected!');
+    console.log('reject');
+  };
+
+  const approve = () => {
+    closeDetails();
+    openNotification('Approved!');
+    console.log('approve');
   };
 
   const columns: ProColumns<ClaimTransactionItem>[] = [
@@ -85,8 +121,7 @@ const LeaveTransaction: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        console.log(entity);
-        return <a onClick={() => {}}>View</a>;
+        return <a onClick={() => view(entity)}>View</a>;
       },
     },
   ];
@@ -113,6 +148,13 @@ const LeaveTransaction: FC = () => {
         columns={columns}
         options={false}
         toolBarRender={() => toolBar}
+      />
+      <Details
+        data={data}
+        show={showDetails}
+        reject={reject}
+        approve={approve}
+        close={closeDetails}
       />
     </PageContainer>
   );

@@ -10,6 +10,10 @@ export type ClaimTransactionItem = {
   approvedAmount: number;
   approvalStatus: number;
   claimStatus: number;
+  clinicName: string;
+  doctorName: string;
+  remarks?: string;
+  claimFor: string;
 };
 
 export type Pagination = {
