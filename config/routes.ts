@@ -193,10 +193,19 @@
         path: '/interview',
         redirect: '/interview/candidate',
       },
+
       {
         name: 'Candidate',
         path: '/interview/candidate',
         component: './interview/candidate',
+      },
+      {
+        path: '/interview/candidate/pages/add',
+        component: './interview/candidate/pages/add',
+      },
+      {
+        path: '/interview/candidate/pages/view/:id',
+        component: './interview/candidate/pages/view',
       },
       {
         name: 'Interview',
