@@ -5,7 +5,10 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"],
+      "@/candidate/*": ["src/pages/interview/candidate/*"],
+      "@/interview/*": ["./src/pages/interview/interview/*"],
+      "@/posittion/*": ["./src/pages/interview/posittion/*"]
     }
   }
 }

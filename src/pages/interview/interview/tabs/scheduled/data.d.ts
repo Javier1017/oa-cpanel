@@ -1,12 +1,14 @@
-export type EmployeeSetupItem = {
+export type PositionAppliedItem = {
   key: number;
-  employeeCode: string;
-  employee: string;
-  department: string;
-  joinDate: number;
-  IDnum: string;
+  id: number;
+  candidateName: string;
+  candidateNumber: string;
   email: string;
-  status: number;
+  position: string;
+  createdTime: Date;
+  interviewer: string;
+  rank: number;
+  approvalStatus: number;
 };
 
 export type Pagination = {
