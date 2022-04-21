@@ -1,47 +1,77 @@
 import type { Request, Response } from 'express';
 import { parse } from 'url';
-import type { ClaimTransactionItem, Params } from './data.d';
+import type { EmployeeSetupItem, Params } from './data.d';
 
-// mock - generate withdrawal list
-const genList = (current: number, pageSize: number) => {
-  const tableListDataSource: ClaimTransactionItem[] = [];
-  const departmentArray = ['Admin', 'Sales', 'IT', 'HR', 'Marketing'];
-  const claimTypeArray = [
-    'Medical Claim',
-    'Parking Claim',
-    'Toll Claim',
-    'Office Claim',
-    'Social Claim',
-    'Meals Claim',
-    'Miscellaneous Claim',
-  ];
-
-  for (let i = 0; i < pageSize; i += 1) {
-    const randomDepartment = Math.floor(Math.random() * departmentArray.length);
-    const randomClaimType = Math.floor(Math.random() * claimTypeArray.length);
-    tableListDataSource.push({
-      id: Math.floor(1000 + Math.random() * 900000),
-      key: i,
-      employeeCode: '1298XXXXXXX',
-      employee: `bluebear_${i}`,
-      department: departmentArray[randomDepartment],
-      claimType: claimTypeArray[randomClaimType],
-      month: 'April',
-      amount: Math.floor(Math.random() * 1000),
-      approvedAmount: Math.floor(Math.random() * 900),
-      approvalStatus: Math.floor(Math.random() * 3),
-      claimStatus: Math.floor(Math.random() * 3),
-      clinicName: `Clinic ${Math.floor(Math.random() * 1000)}`,
-      doctorName: `Dr. ${Math.floor(Math.random() * 1000)}`,
-      claimFor: 'XXXXX',
-    });
-  }
+const genList = () => {
+  const tableListDataSource: EmployeeSetupItem[] = [];
+  tableListDataSource.push(
+    {
+      key: 1,
+      employeeCode: '001',
+      employee: 'Apple',
+      department: 'Admin',
+      joinDate: Date.now() - Math.floor(Math.random() * 2000),
+      IDnum: '123123456456',
+      email: 'apple@gmail.com',
+      status: 0,
+    },
+    {
+      key: 2,
+      employeeCode: '002',
+      employee: 'Banana',
+      department: 'IT',
+      joinDate: Date.now(),
+      IDnum: '321321654654',
+      email: 'banana@gmail.com',
+      status: 1,
+    },
+    {
+      key: 3,
+      employeeCode: '003',
+      employee: 'Cranberry',
+      department: 'Sales',
+      joinDate: Date.now() - Math.floor(Math.random() * 2000),
+      IDnum: '789789123123',
+      email: 'cranberry@gmail.com',
+      status: 2,
+    },
+    {
+      key: 4,
+      employeeCode: '004',
+      employee: 'Durian',
+      department: 'Marketing',
+      joinDate: Date.now() - Math.floor(Math.random() * 2000),
+      IDnum: '789789123123',
+      email: 'durian@gmail.com',
+      status: 3,
+    },
+    {
+      key: 5,
+      employeeCode: '005',
+      employee: 'Fig',
+      department: 'HR',
+      joinDate: Date.now() - Math.floor(Math.random() * 2000),
+      IDnum: '987987654654',
+      email: 'fig@gmail.com',
+      status: 4,
+    },
+    {
+      key: 6,
+      employeeCode: '006',
+      employee: 'Guava',
+      department: 'Logistic',
+      joinDate: Date.now() - Math.floor(Math.random() * 2000),
+      IDnum: '123456789123',
+      email: 'guava@gmail.com',
+      status: 5,
+    },
+  );
   return tableListDataSource;
 };
 
-const tableListDataSource = genList(1, 100);
+const tableListDataSource = genList();
 
-function getClaimTransactions(req: Request, res: Response, u: string) {
+function getEmployeeSetup(req: Request, res: Response, u: string) {
   let realUrl = u;
   if (!realUrl || Object.prototype.toString.call(realUrl) !== '[object String]') {
     realUrl = req.url;
@@ -113,5 +143,5 @@ function getClaimTransactions(req: Request, res: Response, u: string) {
 }
 
 export default {
-  'GET /api/claim-transactions': getClaimTransactions,
+  'GET /api/employee-setup': getEmployeeSetup,
 };

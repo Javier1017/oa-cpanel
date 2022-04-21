@@ -1,19 +1,12 @@
-export type ClaimTransactionItem = {
+export type EmployeeSetupItem = {
   key: number;
-  id: number;
   employeeCode: string;
   employee: string;
   department: string;
-  claimType: string;
-  month: string;
-  amount: number;
-  approvedAmount: number;
-  approvalStatus: number;
-  claimStatus: number;
-  clinicName: string;
-  doctorName: string;
-  remarks?: string;
-  claimFor: string;
+  joinDate: number;
+  IDnum: string;
+  email: string;
+  status: number;
 };
 
 export type Pagination = {

@@ -14,14 +14,14 @@ const Reject = ({ close, confirm, visible }: Props) => {
   return (
     <>
       <ModalForm
-        title="Leave Rejection"
+        title="Claim Rejection"
         visible={visible}
         onFinish={submit}
         modalProps={{ onCancel: () => close(), destroyOnClose: true }}
       >
         <ProFormTextArea
           name="reason"
-          placeholder="Please state a reason why you're rejecting the leave."
+          placeholder="Please state a reason why you're rejecting the claim."
           label="Reason for rejecting"
           fieldProps={{
             autoSize: { minRows: 3, maxRows: 6 },

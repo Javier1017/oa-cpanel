@@ -1,47 +1,47 @@
 import type { Request, Response } from 'express';
 import { parse } from 'url';
-import type { ClaimTransactionItem, Params } from './data.d';
+import type { EmployeeAttendanceItem, Params } from './data.d';
 
-// mock - generate withdrawal list
-const genList = (current: number, pageSize: number) => {
-  const tableListDataSource: ClaimTransactionItem[] = [];
-  const departmentArray = ['Admin', 'Sales', 'IT', 'HR', 'Marketing'];
-  const claimTypeArray = [
-    'Medical Claim',
-    'Parking Claim',
-    'Toll Claim',
-    'Office Claim',
-    'Social Claim',
-    'Meals Claim',
-    'Miscellaneous Claim',
-  ];
-
-  for (let i = 0; i < pageSize; i += 1) {
-    const randomDepartment = Math.floor(Math.random() * departmentArray.length);
-    const randomClaimType = Math.floor(Math.random() * claimTypeArray.length);
-    tableListDataSource.push({
-      id: Math.floor(1000 + Math.random() * 900000),
-      key: i,
-      employeeCode: '1298XXXXXXX',
-      employee: `bluebear_${i}`,
-      department: departmentArray[randomDepartment],
-      claimType: claimTypeArray[randomClaimType],
-      month: 'April',
-      amount: Math.floor(Math.random() * 1000),
-      approvedAmount: Math.floor(Math.random() * 900),
-      approvalStatus: Math.floor(Math.random() * 3),
-      claimStatus: Math.floor(Math.random() * 3),
-      clinicName: `Clinic ${Math.floor(Math.random() * 1000)}`,
-      doctorName: `Dr. ${Math.floor(Math.random() * 1000)}`,
-      claimFor: 'XXXXX',
-    });
-  }
+const genList = () => {
+  const tableListDataSource: EmployeeAttendanceItem[] = [];
+  tableListDataSource.push(
+    {
+      key: 1,
+      type: 'Time In',
+      desc: '9:00am',
+    },
+    {
+      key: 2,
+      type: 'Time Out',
+      desc: '6:00pm',
+    },
+    {
+      key: 3,
+      type: 'Lunch Break',
+      desc: '1Hour15Mins',
+    },
+    {
+      key: 4,
+      type: 'Dinner Break',
+      desc: '1Hour',
+    },
+    {
+      key: 5,
+      type: 'OT1',
+      desc: 'x1.5 pay',
+    },
+    {
+      key: 6,
+      type: 'OT2',
+      desc: 'x2.0 pay',
+    },
+  );
   return tableListDataSource;
 };
 
-const tableListDataSource = genList(1, 100);
+const tableListDataSource = genList();
 
-function getClaimTransactions(req: Request, res: Response, u: string) {
+function getEmployeeAttendance(req: Request, res: Response, u: string) {
   let realUrl = u;
   if (!realUrl || Object.prototype.toString.call(realUrl) !== '[object String]') {
     realUrl = req.url;
@@ -113,5 +113,5 @@ function getClaimTransactions(req: Request, res: Response, u: string) {
 }
 
 export default {
-  'GET /api/claim-transactions': getClaimTransactions,
+  'GET /api/employee-attendance': getEmployeeAttendance,
 };
