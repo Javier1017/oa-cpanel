@@ -5,7 +5,12 @@ import {
   ProFormDateRangePicker,
 } from '@ant-design/pro-form';
 import { Button, Space, Form, Upload } from 'antd';
-import { PlusOutlined, DeleteOutlined, UploadOutlined } from '@ant-design/icons';
+import {
+  ExclamationCircleTwoTone,
+  PlusOutlined,
+  DeleteOutlined,
+  UploadOutlined,
+} from '@ant-design/icons';
 import { employees, leaveTypes, leaveDuration } from './data';
 import styles from './index.less';
 
@@ -64,7 +69,10 @@ const Add = ({ visible, close, submit }: PropsShape) => {
             rules={[{ required: true, message: 'Leave Type is required.' }]}
             width="lg"
           />
-          <span>XXX Leaves Available: XXX</span>
+          <span>
+            <ExclamationCircleTwoTone style={{ marginRight: '10px' }} />
+            XXX Leaves Available: XXX
+          </span>
         </Space>
       </div>
       <div className="ant-col ant-form-item-label">
@@ -105,6 +113,9 @@ const Add = ({ visible, close, submit }: PropsShape) => {
         rules={[{ required: true, message: 'Reason is required.' }]}
         label="Reasons"
         width="lg"
+        fieldProps={{
+          autoSize: { minRows: 3, maxRows: 6 },
+        }}
       />
       <Form.Item
         name="attachments"

@@ -31,6 +31,9 @@ const genList = (current: number, pageSize: number) => {
       approvedAmount: Math.floor(Math.random() * 900),
       approvalStatus: Math.floor(Math.random() * 3),
       claimStatus: Math.floor(Math.random() * 3),
+      clinicName: `Clinic ${Math.floor(Math.random() * 1000)}`,
+      doctorName: `Dr. ${Math.floor(Math.random() * 1000)}`,
+      claimFor: 'XXXXX',
     });
   }
   return tableListDataSource;
