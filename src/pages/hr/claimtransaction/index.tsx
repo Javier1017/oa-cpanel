@@ -8,10 +8,12 @@ import { claimTransaction } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
 import Details from './components/details';
+import AddClaim from './components/addClaim';
 
-const LeaveTransaction: FC = () => {
+const ClaimTransaction: FC = () => {
   const [data, setData] = useState<ClaimTransactionItem | null>(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
   const paginationProps = {
     showSizeChanger: true,
@@ -49,6 +51,13 @@ const LeaveTransaction: FC = () => {
     closeDetails();
     openNotification('Approved!');
     console.log('approve');
+  };
+
+  const submit = (value: any) => {
+    closeDetails();
+    openNotification('Added!');
+    console.log(value, 'added');
+    setShowAdd(false);
   };
 
   const columns: ProColumns<ClaimTransactionItem>[] = [
@@ -127,7 +136,7 @@ const LeaveTransaction: FC = () => {
   ];
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />}>
+    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => setShowAdd(true)}>
       Add
     </Button>,
     <Button key="export">Export</Button>,
@@ -156,8 +165,13 @@ const LeaveTransaction: FC = () => {
         approve={approve}
         close={closeDetails}
       />
+      <AddClaim
+        visible={showAdd}
+        cancel={() => setShowAdd(false)}
+        submit={(value: any) => submit(value)}
+      />
     </PageContainer>
   );
 };
 
-export default LeaveTransaction;
+export default ClaimTransaction;

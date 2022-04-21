@@ -23,6 +23,9 @@ const Reject = ({ close, confirm, visible }: Props) => {
           name="reason"
           placeholder="Please state a reason why you're rejecting the leave."
           label="Reason for rejecting"
+          fieldProps={{
+            autoSize: { minRows: 3, maxRows: 6 },
+          }}
           rules={[
             {
               required: true,
