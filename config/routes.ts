@@ -132,6 +132,11 @@
             component: './company/companyprofile',
           },
           {
+            name: 'Banks',
+            path: 'banks',
+            component: './company/banks',
+          },
+          {
             name: 'Department',
             path: 'department',
             component: './company/department',

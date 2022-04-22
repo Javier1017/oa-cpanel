@@ -34,6 +34,7 @@ const EmployeeSetup: FC = () => {
     {
       title: 'Join Date',
       dataIndex: 'joinDate',
+      valueType: 'date',
       order: 7,
     },
     {
