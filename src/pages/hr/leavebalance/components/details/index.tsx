@@ -1,4 +1,4 @@
-import { Modal, Button } from 'antd';
+import { Modal, Button, Form } from 'antd';
 import type { LeaveBalanceItem } from '../../data';
 import styles from './index.less';
 import ProDescriptions from '@ant-design/pro-descriptions';
@@ -6,7 +6,7 @@ import { EditableProTable } from '@ant-design/pro-table';
 import type { LeavesItem } from './data';
 import type { ProColumns } from '@ant-design/pro-table';
 import { detailedBalance } from './service';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 interface PropsShape {
   visible: boolean;
@@ -15,7 +15,9 @@ interface PropsShape {
 }
 
 const Details = ({ visible, close, data }: PropsShape) => {
-  const [rowKey, setRowKey] = useState<string | undefined>(undefined);
+  const [editing, setEditing] = useState(false);
+  const [form] = Form.useForm();
+  const table = useRef<any>();
 
   const columns: ProColumns<LeavesItem>[] = [
     {
@@ -45,14 +47,28 @@ const Details = ({ visible, close, data }: PropsShape) => {
     },
   ];
 
+  const submitForm = async (values: any) => {
+    console.log(values);
+  };
+
   const handleToolbarAction = () => {
-    if (rowKey) setRowKey(undefined);
-    else setRowKey('id');
+    const formData = form.getFieldsValue();
+    if (editing) {
+      submitForm(formData); // submit form to backend
+      setEditing((v) => !v); // Remove editable
+      table.current.reset(); // Reset table
+      table.current.reloadAndRest();
+      table.current.reload();
+      table.current?.cancelEditable('Balance');
+    } else {
+      table.current?.startEditable('Balance');
+      setEditing((v) => !v);
+    }
   };
 
   const toolbar = [
     <Button key="toggle" type="primary" onClick={() => handleToolbarAction()}>
-      {rowKey ? 'Confirm' : 'Edit'}
+      {editing ? 'Confirm' : 'Edit'}
     </Button>,
   ];
 
@@ -102,7 +118,8 @@ const Details = ({ visible, close, data }: PropsShape) => {
             ]}
           />
           <EditableProTable<LeavesItem>
-            rowKey={rowKey}
+            actionRef={table}
+            rowKey="id"
             options={false}
             recordCreatorProps={false}
             request={detailedBalance}
@@ -111,8 +128,8 @@ const Details = ({ visible, close, data }: PropsShape) => {
             toolBarRender={() => toolbar}
             pagination={false}
             editable={{
+              form,
               type: 'single',
-              editableKeys: ['Balance'],
               actionRender: (row, config, defaultDoms) => {
                 console.log(defaultDoms);
                 return [defaultDoms.delete];
