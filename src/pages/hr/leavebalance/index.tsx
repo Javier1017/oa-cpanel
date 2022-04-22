@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { LeaveBalanceItem, Pagination } from './data';
@@ -48,11 +48,24 @@ const LeaveTransaction: FC = () => {
     },
   ];
 
+  const showNotification = (message: string) => {
+    notification.success({
+      message,
+      duration: 2,
+    });
+  };
+
+  const exportData = () => {
+    showNotification('Exported successfully!');
+  };
+
   const toolBar = [
     <Button type="primary" key="add" icon={<PlusOutlined />}>
       Add
     </Button>,
-    <Button key="export">Export</Button>,
+    <Button key="export" onClick={exportData}>
+      Export
+    </Button>,
   ];
 
   return (
