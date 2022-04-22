@@ -1,4 +1,4 @@
-export type PositionAppliedItem = {
+export type ScheduledAppliedItem = {
   key: number;
   id: number;
   candidateName: string;
@@ -9,6 +9,7 @@ export type PositionAppliedItem = {
   interviewer: string;
   rank: number;
   approvalStatus: number;
+  isScheduled: number;
 };
 
 export type Pagination = {

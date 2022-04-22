@@ -1,4 +1,4 @@
-import type { PositionAppliedItem } from './data';
+import type { ScheduledAppliedItem } from '../../data';
 import { interviewCandidates } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 
@@ -12,7 +12,7 @@ export function interviewScheduled() {
     // total: list.length,
   };
 
-  const columns: ProColumns<PositionAppliedItem>[] = [
+  const columns: ProColumns<ScheduledAppliedItem>[] = [
     {
       title: 'Name',
       dataIndex: 'candidateName',
@@ -37,6 +37,7 @@ export function interviewScheduled() {
       title: 'Interviewer',
       dataIndex: 'interviewer',
     },
+
     {
       title: 'Actions',
       dataIndex: 'id',
