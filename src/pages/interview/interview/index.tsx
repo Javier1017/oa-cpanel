@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
-import type { PositionAppliedItem, Pagination } from './data';
+import type { ScheduledAppliedItem, Pagination } from './data';
 
 // local imports
 import { interviewScheduled } from './tabs/scheduled';
@@ -21,7 +21,7 @@ const Interview: FC = () => {
 
   return (
     <PageContainer title={false}>
-      <ProTable<PositionAppliedItem, Pagination>
+      <ProTable<ScheduledAppliedItem, Pagination>
         rowKey="key"
         cardBordered={true}
         search={false}

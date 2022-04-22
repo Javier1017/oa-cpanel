@@ -1,5 +1,5 @@
 import { request } from 'umi';
-import type { ScheduledAppliedItem } from '../../data';
+import type { PositionAvailableItem } from './data';
 
 export async function interviewCandidates(
   params: {
@@ -9,10 +9,10 @@ export async function interviewCandidates(
   options?: Record<string, any>,
 ) {
   return request<{
-    data: ScheduledAppliedItem[];
+    data: PositionAvailableItem[];
     total?: number;
     success?: boolean;
-  }>('/api/interview-scheduled', {
+  }>('/api/interview-position', {
     method: 'GET',
     params: {
       ...params,

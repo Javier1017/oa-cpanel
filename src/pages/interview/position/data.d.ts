@@ -1,14 +1,11 @@
-export type PositionAppliedItem = {
+export type PositionAvailableItem = {
   key: number;
   id: number;
-  candidateName: string;
-  candidateNumber: string;
-  email: string;
   position: string;
+  department: string;
   createdTime: Date;
-  interviewer: string;
-  rank: number;
-  approvalStatus: number;
+  author: string;
+  status: number;
 };
 
 export type Pagination = {
