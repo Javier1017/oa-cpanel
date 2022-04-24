@@ -122,11 +122,17 @@ const LeaveTransaction: FC = () => {
     },
   ];
 
+  const exportData = () => {
+    openNotification('Exported successfully!');
+  };
+
   const toolBar = [
     <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => setShowAdd(true)}>
       Add
     </Button>,
-    <Button key="export">Export</Button>,
+    <Button key="export" onClick={exportData}>
+      Export
+    </Button>,
   ];
 
   return (
