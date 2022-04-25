@@ -28,9 +28,40 @@
     name: 'Main',
     routes: [
       {
-        path: '/payroll',
+        path: 'payroll',
         name: 'Payroll',
-        component: './payroll/',
+        routes: [
+          {
+            path: 'generate-payroll',
+            name: 'Generate Payroll',
+            component: './payroll/generate',
+          },
+          {
+            path: 'commissions',
+            name: 'Commissions',
+            component: './payroll/commissions',
+          },
+          {
+            path: 'bonus',
+            name: 'Bonus',
+            component: './payroll/bonus',
+          },
+          {
+            path: 'allowance',
+            name: 'Allowance',
+            component: './payroll/allowance',
+          },
+          {
+            path: 'deduction',
+            name: 'Deduction',
+            component: './payroll/deduction',
+          },
+          {
+            path: 'remuneration',
+            name: 'Additional Remuneration',
+            component: './payroll/remuneration',
+          },
+        ],
       },
       {
         path: 'hr',
