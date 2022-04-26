@@ -16,13 +16,59 @@ const Commission: FC = () => {
   };
 
   const columns: ProColumns<AllowanceItem>[] = [
-    { title: 'Employee Code', dataIndex: 'employeeCode' },
-    { title: 'Employee', dataIndex: 'employee' },
-    { title: 'Department', dataIndex: 'department' },
-    { title: 'Allowance Type', dataIndex: 'allowanceType' },
-    { title: 'Descriptions', dataIndex: 'descriptions' },
-    { title: 'Sequence', dataIndex: 'sequence' },
-    { title: 'Amount', dataIndex: 'amount' },
+    { title: 'Employee Code', dataIndex: 'employeeCode', hideInSearch: true },
+    { title: 'Employee', dataIndex: 'employee', order: 2 },
+    {
+      title: 'Month',
+      hideInTable: true,
+      dataIndex: 'month',
+      order: 5,
+      valueEnum: {
+        1: 'January',
+        2: 'February',
+        3: 'March',
+        4: 'April',
+        5: 'May',
+        6: 'June',
+        7: 'July',
+        8: 'August',
+        9: 'September',
+        10: 'October',
+        11: 'November',
+        12: 'December',
+      },
+    },
+    {
+      title: 'Department',
+      dataIndex: 'department',
+      order: 3,
+      valueEnum: {
+        0: 'Department 1',
+        1: 'Department 2',
+        2: 'Department 3',
+      },
+    },
+    {
+      title: 'Allowance Type',
+      dataIndex: 'allowanceType',
+      order: 1,
+      valueEnum: {
+        0: 'Type 1',
+        1: 'Type 2',
+        2: 'Type 3',
+      },
+    },
+    { title: 'Descriptions', dataIndex: 'descriptions', hideInSearch: true },
+    {
+      title: 'Sequence',
+      dataIndex: 'sequence',
+      order: 4,
+      valueEnum: {
+        'First Half': 'First Half',
+        'Second Half': 'Second Half',
+      },
+    },
+    { title: 'Amount', dataIndex: 'amount', hideInSearch: true },
     {
       title: 'Actions',
       dataIndex: 'id',

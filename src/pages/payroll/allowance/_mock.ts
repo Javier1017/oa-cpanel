@@ -5,6 +5,7 @@ import type { AllowanceItem, Params } from './data.d';
 // mock - generate withdrawal list
 const genList = (current: number, pageSize: number) => {
   const tableListDataSource: AllowanceItem[] = [];
+  const sequenceArray = ['First Half', 'Second Half'];
 
   for (let i = 0; i < pageSize; i += 1) {
     tableListDataSource.push({
@@ -15,7 +16,7 @@ const genList = (current: number, pageSize: number) => {
       department: `Department ${i}`,
       allowanceType: `Type ${i}`,
       descriptions: `Description ${i}`,
-      sequence: `Sequence ${i}`,
+      sequence: sequenceArray[Math.floor(Math.random() * 2)],
       amount: Math.floor(Math.random() * 1000),
     });
   }
