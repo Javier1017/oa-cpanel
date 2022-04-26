@@ -5,6 +5,7 @@ import type { CommissionItem, Params } from './data.d';
 // mock - generate withdrawal list
 const genList = (current: number, pageSize: number) => {
   const tableListDataSource: CommissionItem[] = [];
+  const sequenceArray = ['First Half', 'Second Half'];
 
   for (let i = 0; i < pageSize; i += 1) {
     tableListDataSource.push({
@@ -15,7 +16,7 @@ const genList = (current: number, pageSize: number) => {
       department: `Department ${i}`,
       commissionType: `Type ${i}`,
       descriptions: `Description ${i}`,
-      sequence: `Sequence ${i}`,
+      sequence: sequenceArray[Math.floor(Math.random() * 2)],
       workUnit: Math.floor(Math.random() * 150),
       rate: Math.floor(Math.random() * 1000),
       amount: Math.floor(Math.random() * 1000),
