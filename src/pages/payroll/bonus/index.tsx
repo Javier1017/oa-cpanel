@@ -16,13 +16,50 @@ const Commission: FC = () => {
   };
 
   const columns: ProColumns<BonusItem>[] = [
-    { title: 'Employee Code', dataIndex: 'employeeCode' },
-    { title: 'Employee', dataIndex: 'employee' },
-    { title: 'Department', dataIndex: 'department' },
-    { title: 'Sequence', dataIndex: 'sequence' },
-    { title: 'Descriptions', dataIndex: 'descriptions' },
-    { title: 'Wages', dataIndex: 'wages' },
-    { title: 'Amount', dataIndex: 'amount' },
+    {
+      title: 'Month',
+      dataIndex: 'month',
+      hideInTable: true,
+      order: 4,
+      valueEnum: {
+        1: 'January',
+        2: 'February',
+        3: 'March',
+        4: 'April',
+        5: 'May',
+        6: 'June',
+        7: 'July',
+        8: 'August',
+        9: 'September',
+        10: 'October',
+        11: 'November',
+        12: 'December',
+      },
+    },
+    { title: 'Employee Code', dataIndex: 'employeeCode', hideInSearch: true },
+    { title: 'Employee', dataIndex: 'employee', order: 1 },
+    {
+      title: 'Department',
+      dataIndex: 'department',
+      order: 2,
+      valueEnum: {
+        0: 'Department 1',
+        1: 'Department 2',
+        2: 'Department 3',
+      },
+    },
+    {
+      title: 'Sequence',
+      dataIndex: 'sequence',
+      order: 3,
+      valueEnum: {
+        'First Half': 'First Half',
+        'Second Half': 'Second Half',
+      },
+    },
+    { title: 'Descriptions', dataIndex: 'descriptions', hideInSearch: true },
+    { title: 'Wages', dataIndex: 'wages', hideInSearch: true },
+    { title: 'Amount', dataIndex: 'amount', hideInSearch: true },
     {
       title: 'Actions',
       dataIndex: 'id',

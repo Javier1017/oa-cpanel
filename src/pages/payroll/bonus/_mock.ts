@@ -5,6 +5,7 @@ import type { BonusItem, Params } from './data.d';
 // mock - generate withdrawal list
 const genList = (current: number, pageSize: number) => {
   const tableListDataSource: BonusItem[] = [];
+  const sequenceArray = ['First Half', 'Second Half'];
 
   for (let i = 0; i < pageSize; i += 1) {
     tableListDataSource.push({
@@ -13,7 +14,7 @@ const genList = (current: number, pageSize: number) => {
       employeeCode: '1298XXXXXXX',
       employee: `Theodoulos_${i}`,
       department: `Department ${i}`,
-      sequence: `Sequence ${i}`,
+      sequence: sequenceArray[Math.floor(Math.random() * 2)],
       descriptions: `Description ${i}`,
       wages: Math.floor(Math.random() * 150),
       amount: Math.floor(Math.random() * 1000),
