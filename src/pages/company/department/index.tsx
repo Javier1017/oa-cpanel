@@ -6,6 +6,8 @@ import type { DepartmentItem, Pagination } from './data';
 import { departments } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import DepartmentModal from './component/assetModal';
+
 
 const Departments: FC = () => {
   const paginationProps = {
@@ -43,6 +45,12 @@ const Departments: FC = () => {
 
   return (
     <PageContainer title={false}>
+      {/* <DepartmentModal
+        title={title}
+        visible={modal}
+        onCancel={() => setModal(false)}
+      /> */}
+
       <ProTable<DepartmentItem, Pagination>
         // headerTitle="查询表格"
         // actionRef={actionRef}

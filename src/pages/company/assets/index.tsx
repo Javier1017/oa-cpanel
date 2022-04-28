@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { useState } from 'react';
 import { Button, Switch } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
@@ -6,8 +7,11 @@ import type { AssetItem, Pagination } from './data';
 import { assets } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import AssetModal from './component/assetModal';
 
 const Assets: FC = () => {
+  const [title, setTitle] = useState('');
+  const [modal, setModal] = useState(false);
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -44,19 +48,26 @@ const Assets: FC = () => {
       hideInSearch: true,
       render: (dom, entity) => {
         console.log(entity);
-        return <a onClick={() => {}}>Edit</a>;
+        return <a onClick={() => {setModal(true); setTitle('Edit Assets Type');}}>Edit</a>;
       },
     },
   ];
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />}>
+    <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Assets Type');}}>
       Add
     </Button>,
   ];
 
   return (
     <PageContainer title={false}>
+
+      <AssetModal
+        title={title}
+        visible={modal}
+        onCancel={() => setModal(false)}
+      />
+
       <ProTable<AssetItem, Pagination>
         // headerTitle="查询表格"
         // actionRef={actionRef}

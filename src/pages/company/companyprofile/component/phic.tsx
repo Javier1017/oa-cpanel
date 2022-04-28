@@ -5,6 +5,7 @@ import './index.less';
 const PHIC: FC = () => {
 
 return (
+    <div className='comProfile'>
     <ProForm
         submitter={false}
         grid={true}
@@ -70,6 +71,7 @@ return (
             </ProFormFieldSet>
         </ProForm.Group>
     </ProForm>
+    </div>
   );
 };
 

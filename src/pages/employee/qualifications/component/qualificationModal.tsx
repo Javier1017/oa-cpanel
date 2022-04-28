@@ -12,6 +12,7 @@ const AttendanceModal: React.FC<CollectionCreateFormProps> = ({ title, visible, 
 
   return (
     <ModalForm
+      className='qualificationModal'
       modalProps={{
         onCancel: () => onCancel(),
       }}

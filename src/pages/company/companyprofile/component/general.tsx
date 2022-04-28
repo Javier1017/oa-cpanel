@@ -7,6 +7,7 @@ import './index.less';
 const General: FC = () => {
 
 return (
+    <div className='comProfile'>
     <ProForm
         submitter={false}
         grid={true}
@@ -105,6 +106,7 @@ return (
             />
         </ProForm.Group>
     </ProForm>
+    </div>
   );
 };
 
