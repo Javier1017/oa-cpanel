@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useState } from 'react';
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { WorkReportItem, Pagination } from './data';
@@ -73,19 +73,31 @@ const WorkReport: FC = () => {
     },
   ];
 
+  const showNotification = (message: string) => {
+    notification.success({
+      message,
+      duration: 2,
+    });
+  };
+
+  const handleSubmit = (value: any) => {
+    console.log(value);
+    showNotification('Successfully Added!');
+    setShowAdd(false);
+  };
+
+  const handleExport = () => {
+    showNotification('Successfully Exported!');
+  };
+
   const toolBar = [
     <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => setShowAdd(true)}>
       Add
     </Button>,
-    <Button key="export" onClick={() => {}}>
+    <Button key="export" onClick={() => handleExport()}>
       Export
     </Button>,
   ];
-
-  const handleSubmit = (value: any) => {
-    console.log(value);
-    setShowAdd(false);
-  };
 
   return (
     <PageContainer title={false}>
