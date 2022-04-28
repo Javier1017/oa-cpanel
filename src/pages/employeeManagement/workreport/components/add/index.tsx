@@ -1,6 +1,9 @@
-import { ModalForm, ProFormGroup, ProFormSelect, ProFormTextArea } from '@ant-design/pro-form';
-import { Form, Upload, Button } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import {
+  ModalForm,
+  ProFormUploadButton,
+  ProFormSelect,
+  ProFormTextArea,
+} from '@ant-design/pro-form';
 import { employees, types } from './data';
 
 interface PropsShape {
@@ -10,7 +13,16 @@ interface PropsShape {
 }
 
 const AddReport = ({ show, close, submit }: PropsShape) => {
+  const waitTime = (time: number = 100) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, time);
+    });
+  };
+
   const submitForm = async (value: any) => {
+    await waitTime(4000);
     submit(value);
   };
 
@@ -30,49 +42,45 @@ const AddReport = ({ show, close, submit }: PropsShape) => {
         cancelText: '',
       }}
       onFinish={submitForm}
-      width={800}
+      width={700}
       layout="horizontal"
+      grid
     >
-      <ProFormGroup>
-        <ProFormSelect
-          name="employee"
-          label="Employee"
-          valueEnum={employees}
-          rules={[{ required: true, message: 'Employee is required.' }]}
-          width="lg"
-        />
-      </ProFormGroup>
-      <ProFormGroup>
-        <ProFormSelect
-          name="reportType"
-          label="Report Type"
-          valueEnum={types}
-          rules={[{ required: true, message: 'Report Type is required.' }]}
-          width="lg"
-        />
-      </ProFormGroup>
-      <ProFormGroup>
-        <ProFormTextArea
-          fieldProps={{
-            autoSize: { minRows: 3, maxRows: 6 },
-          }}
-          name="contents"
-          label="Contents"
-          rules={[{ required: true, message: 'Contents is required.' }]}
-          width="lg"
-        />
-      </ProFormGroup>
-      <Form.Item
+      <ProFormSelect
+        name="employee"
+        label="Employee"
+        valueEnum={employees}
+        rules={[{ required: true, message: 'Employee is required.' }]}
+        colProps={{ span: 22 }}
+        labelCol={{ span: 5 }}
+      />
+      <ProFormSelect
+        name="reportType"
+        label="Report Type"
+        valueEnum={types}
+        rules={[{ required: true, message: 'Report Type is required.' }]}
+        colProps={{ span: 22 }}
+        labelCol={{ span: 5 }}
+      />
+      <ProFormTextArea
+        fieldProps={{
+          autoSize: { minRows: 3, maxRows: 6 },
+        }}
+        name="contents"
+        label="Contents"
+        rules={[{ required: true, message: 'Contents is required.' }]}
+        colProps={{ span: 22 }}
+        labelCol={{ span: 5 }}
+      />
+      <ProFormUploadButton
         name="attachments"
         label="Attachments"
+        labelCol={{ span: 5 }}
+        colProps={{ span: 22 }}
         valuePropName="fileList"
+        title="Click to upload"
         getValueFromEvent={normFile}
-        // className={styles.attachments}
-      >
-        <Upload name="logo" maxCount={5} listType="picture">
-          <Button icon={<UploadOutlined />}>Click to upload</Button>
-        </Upload>
-      </Form.Item>
+      />
     </ModalForm>
   );
 };
