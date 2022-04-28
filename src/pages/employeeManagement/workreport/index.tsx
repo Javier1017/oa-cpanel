@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { useState } from 'react';
 import { Button } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
@@ -6,8 +7,17 @@ import type { WorkReportItem, Pagination } from './data';
 import { workReports } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import Details from './components/details';
 
-const Commission: FC = () => {
+const WorkReport: FC = () => {
+  const [details, setDetails] = useState<WorkReportItem | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
+
+  const openDetails = (data: WorkReportItem) => {
+    setDetails(data);
+    setShowDetails(true);
+  };
+
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -56,7 +66,7 @@ const Commission: FC = () => {
       hideInSearch: true,
       render: (dom, entity) => {
         console.log(dom, entity);
-        return <a onClick={() => {}}>View</a>;
+        return <a onClick={() => openDetails(entity)}>View</a>;
       },
     },
   ];
@@ -86,8 +96,9 @@ const Commission: FC = () => {
         options={false}
         toolBarRender={() => toolBar}
       />
+      <Details data={details} show={showDetails} close={() => setShowDetails(false)} />
     </PageContainer>
   );
 };
 
-export default Commission;
+export default WorkReport;
