@@ -8,9 +8,11 @@ import { workReports } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
 import Details from './components/details';
+import Add from './components/add';
 
 const WorkReport: FC = () => {
   const [details, setDetails] = useState<WorkReportItem | null>(null);
+  const [showAdd, setShowAdd] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
   const openDetails = (data: WorkReportItem) => {
@@ -72,13 +74,18 @@ const WorkReport: FC = () => {
   ];
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => {}}>
+    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => setShowAdd(true)}>
       Add
     </Button>,
     <Button key="export" onClick={() => {}}>
       Export
     </Button>,
   ];
+
+  const handleSubmit = (value: any) => {
+    console.log(value);
+    setShowAdd(false);
+  };
 
   return (
     <PageContainer title={false}>
@@ -97,6 +104,7 @@ const WorkReport: FC = () => {
         toolBarRender={() => toolBar}
       />
       <Details data={details} show={showDetails} close={() => setShowDetails(false)} />
+      <Add show={showAdd} close={() => setShowAdd(false)} submit={handleSubmit} />
     </PageContainer>
   );
 };
