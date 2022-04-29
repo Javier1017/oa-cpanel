@@ -47,7 +47,6 @@ const Assets: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        console.log(entity);
         return <a onClick={() => {setModal(true); setTitle('Edit Assets Type');}}>Edit</a>;
       },
     },

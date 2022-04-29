@@ -3,12 +3,13 @@ import { useState } from 'react';
 import { Button, Switch } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
-import type { GroupItem, groupPagination } from './leaveGroup/data';
-import { leavegroup } from './leaveGroup/service';
 import type { TypeItem, typePagination } from './leaveType/data';
 import { leavetype } from './leaveType/service';
+import type { GroupItem, groupPagination } from './leaveGroup/data';
+import { leavegroup } from './leaveGroup/service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import LeaveGroup from './component/leaveGroup';
 
 const ClaimSetup: FC = () => {
   const [activeKey, setActiveKey] = useState('type');
@@ -61,7 +62,7 @@ const ClaimSetup: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModal(true); setTitle('Edit Attendance Type');}}>Edit</a>;
+        return <a onClick={() => {setModal(true); setTitle('Edit');}}>Edit</a>;
       },
     },
   ];
@@ -94,7 +95,7 @@ const ClaimSetup: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModal(true); setTitle('Edit Attendance Type');}}>Edit</a>;
+        return <a onClick={() => {setModal(true); setTitle('Edit Leave Group');}}>Edit</a>;
       },
     },
   ];
@@ -102,6 +103,11 @@ const ClaimSetup: FC = () => {
 
   return (
     <PageContainer title={false}>
+      <LeaveGroup
+        title={title}
+        visible={modal}
+        onCancel={() => setModal(false)}
+      />
       {activeKey == 'type' &&
         <ProTable<TypeItem, typePagination>
           // headerTitle="查询表格"
@@ -131,7 +137,7 @@ const ClaimSetup: FC = () => {
               ],
             },
             actions: [
-              <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Attendance Type');}}>
+              <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add');}}>
               Add
               </Button>
             ],
@@ -167,7 +173,7 @@ const ClaimSetup: FC = () => {
             ],
           },
           actions: [
-            <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Attendance Type');}}>
+            <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Leave Group');}}>
             Add
             </Button>
           ],

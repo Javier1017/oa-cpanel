@@ -8,11 +8,11 @@ interface CollectionCreateFormProps {
     onCancel: () => void;
 }
 
-const AssetModal: React.FC<CollectionCreateFormProps> = ({ title, visible, onCancel }) => {
+const DepartmentModal: React.FC<CollectionCreateFormProps> = ({ title, visible, onCancel }) => {
 
   return (
     <ModalForm
-      className='assetModal'
+      className='departmentModal'
       modalProps={{
         onCancel: () => onCancel(),
       }}
@@ -27,13 +27,13 @@ const AssetModal: React.FC<CollectionCreateFormProps> = ({ title, visible, onCan
       }}
     >
         <ProFormText
-            name="name"
-            label="Assets Type"
-            placeholder="Assets Type"
+            name="department"
+            label="Department"
+            placeholder="Department"
             rules={[
                 {
                 required: true,
-                message: "Please input Assets Type"
+                message: "Please input Department"
                 },
             ]}
         />
@@ -46,4 +46,4 @@ const AssetModal: React.FC<CollectionCreateFormProps> = ({ title, visible, onCan
   );
 };
 
-export default AssetModal;
+export default DepartmentModal;

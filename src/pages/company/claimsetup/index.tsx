@@ -9,11 +9,15 @@ import type { ClaimItem, claimPagination } from './claimType/data';
 import { claimtype } from './claimType/service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import ClaimGroup from './component/claimGroup';
+import ClaimType from './component/claimType';
 
 const ClaimSetup: FC = () => {
   const [activeKey, setActiveKey] = useState('type');
   const [title, setTitle] = useState('');
   const [modal, setModal] = useState(false);
+  const [titleType, setTitleType] = useState('');
+  const [modalType, setModalType] = useState(false);
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -53,7 +57,7 @@ const ClaimSetup: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModal(true); setTitle('Edit Attendance Type');}}>Edit</a>;
+        return <a onClick={() => {setModalType(true); setTitleType('Edit Claim Type');}}>Edit</a>;
       },
     },
   ];
@@ -86,7 +90,7 @@ const ClaimSetup: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModal(true); setTitle('Edit Attendance Type');}}>Edit</a>;
+        return <a onClick={() => {setModal(true); setTitle('Edit Claim Group');}}>Edit</a>;
       },
     },
   ];
@@ -94,6 +98,17 @@ const ClaimSetup: FC = () => {
 
   return (
     <PageContainer title={false}>
+      <ClaimType
+        title={titleType}
+        visible={modalType}
+        onCancel={() => setModalType(false)}
+      />
+      <ClaimGroup
+        title={title}
+        visible={modal}
+        onCancel={() => setModal(false)}
+      />
+
       {activeKey == 'type' &&
         <ProTable<ClaimItem, claimPagination>
           // headerTitle="查询表格"
@@ -123,7 +138,7 @@ const ClaimSetup: FC = () => {
               ],
             },
             actions: [
-              <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Attendance Type');}}>
+              <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModalType(true); setTitleType('Add Claim Type');}}>
               Add
               </Button>
             ],
@@ -159,7 +174,7 @@ const ClaimSetup: FC = () => {
             ],
           },
           actions: [
-            <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Attendance Type');}}>
+            <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Claim Group');}}>
             Add
             </Button>
           ],
