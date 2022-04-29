@@ -12,6 +12,7 @@ const ReportModal: React.FC<CollectionCreateFormProps> = ({ title, visible, onCa
 
   return (
     <ModalForm
+      className='reportModal'
       modalProps={{
         onCancel: () => onCancel(),
       }}

@@ -11,8 +11,18 @@ const Validator = {
 };
 
 return (
+    <div className='employee'>
     <ProForm
-        submitter={false}
+        submitter={{
+            searchConfig: {
+                submitText: 'Confirm',
+              },
+            resetButtonProps: {
+                style: {
+                  display: 'none',
+                },
+            },
+        }}
         grid={true}
         layout='horizontal'
         rowProps={{
@@ -236,6 +246,7 @@ return (
             />
         </ProForm.Group>
     </ProForm>
+    </div>
   );
 };
 
