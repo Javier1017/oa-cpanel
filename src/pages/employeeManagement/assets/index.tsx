@@ -6,10 +6,12 @@ import type { AssetsItem, Pagination } from './data';
 import { assets } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
-// import Details from './components/details';
-// import Add from './components/add';
+import Add from './components/add';
+import { useState } from 'react';
 
 const WorkReport: FC = () => {
+  const [showAdd, setShowAdd] = useState(false);
+
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -72,8 +74,14 @@ const WorkReport: FC = () => {
     showNotification('Successfully Exported!');
   };
 
+  const handleSubmit = (value: any) => {
+    console.log(value);
+    setShowAdd(false);
+    showNotification('Successfully saved!');
+  };
+
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => {}}>
+    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => setShowAdd(true)}>
       Add
     </Button>,
     <Button key="export" onClick={() => handleExport()}>
@@ -97,8 +105,7 @@ const WorkReport: FC = () => {
         options={false}
         toolBarRender={() => toolBar}
       />
-      {/* <Details data={details} show={showDetails} close={() => setShowDetails(false)} />
-      <Add show={showAdd} close={() => setShowAdd(false)} submit={handleSubmit} /> */}
+      <Add visible={showAdd} close={() => setShowAdd(false)} submit={handleSubmit} />
     </PageContainer>
   );
 };
