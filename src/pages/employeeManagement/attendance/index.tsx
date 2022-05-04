@@ -6,8 +6,12 @@ import type { AttendanceItem, Pagination } from './data';
 import { attendance } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import Details from './components/details';
+import { useState } from 'react';
 
 const AttendanceList: FC = () => {
+  const [showDetails, setShowDetails] = useState(false);
+
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -24,6 +28,11 @@ const AttendanceList: FC = () => {
 
   const handleExport = () => {
     showNotification('Successfully Exported!');
+  };
+
+  const handleApprove = async () => {
+    showNotification('Approved!');
+    setShowDetails(false);
   };
 
   const columns: ProColumns<AttendanceItem>[] = [
@@ -86,7 +95,7 @@ const AttendanceList: FC = () => {
       hideInSearch: true,
       render: (dom, entity) => {
         console.log(dom, entity);
-        return <a onClick={() => {}}>View</a>;
+        return <a onClick={() => setShowDetails(true)}>View</a>;
       },
     },
   ];
@@ -115,6 +124,11 @@ const AttendanceList: FC = () => {
         columns={columns}
         options={false}
         toolBarRender={() => toolBar}
+      />
+      <Details
+        visible={showDetails}
+        close={() => setShowDetails(false)}
+        approve={() => handleApprove()}
       />
     </PageContainer>
   );
