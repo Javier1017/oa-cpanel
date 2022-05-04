@@ -3,7 +3,7 @@ import { Button, notification } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { AttendanceItem, Pagination } from './data';
-import { assets } from './service';
+import { attendance } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
 
@@ -111,7 +111,7 @@ const AttendanceList: FC = () => {
           labelWidth: 120,
         }}
         pagination={paginationProps}
-        request={assets}
+        request={attendance}
         columns={columns}
         options={false}
         toolBarRender={() => toolBar}

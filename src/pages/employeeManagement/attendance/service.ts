@@ -1,7 +1,7 @@
 import { request } from 'umi';
 import type { AttendanceItem } from './data';
 
-export async function assets(
+export async function attendance(
   params: {
     // query
     /** 当前的页码 */
