@@ -90,9 +90,6 @@ const IntervewCandidates: FC = () => {
       <ProTable<PositionAppliedItem, Pagination>
         rowKey="key"
         cardBordered={true}
-        search={{
-          labelWidth: 120,
-        }}
         pagination={paginationProps}
         request={interviewCandidates}
         columns={columns}

@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { useState } from 'react';
 import { Button } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
@@ -6,8 +7,10 @@ import type { EmployeeSetupItem, Pagination } from './data';
 import { employeesetup } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import EmployeeModal from './component';
 
 const EmployeeSetup: FC = () => {
+  const [modal, setModal] = useState(false);
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -91,7 +94,7 @@ const EmployeeSetup: FC = () => {
   ];
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />}>
+    <Button type="primary" key="add" icon={<PlusOutlined />}  onClick={() => {setModal(true);}}>
       Add
     </Button>,
     <Button key="export">Export</Button>,
@@ -99,20 +102,27 @@ const EmployeeSetup: FC = () => {
 
   return (
     <PageContainer title={false}>
-      <ProTable<EmployeeSetupItem, Pagination>
-        // headerTitle="查询表格"
-        // actionRef={actionRef}
-        rowKey="key"
-        cardBordered={true}
-        search={{
-          labelWidth: 120,
-        }}
-        pagination={paginationProps}
-        request={employeesetup}
-        columns={columns}
-        options={false}
-        toolBarRender={() => toolBar}
-      />
+      {modal ? 
+        <EmployeeModal
+          visible={modal}
+          onCancel={() => setModal(false)}>
+        </EmployeeModal>
+      :
+        <ProTable<EmployeeSetupItem, Pagination>
+          // headerTitle="查询表格"
+          // actionRef={actionRef}
+          rowKey="key"
+          cardBordered={true}
+          search={{
+            labelWidth: 120,
+          }}
+          pagination={paginationProps}
+          request={employeesetup}
+          columns={columns}
+          options={false}
+          toolBarRender={() => toolBar}
+        />
+      }
     </PageContainer>
   );
 };

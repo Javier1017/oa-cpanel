@@ -26,4 +26,5 @@ export type Params = {
   currentPage?: number;
   filter?: Record<string, any[]>;
   sorter?: Record<string, any>;
+  candidateName: string;
 };
