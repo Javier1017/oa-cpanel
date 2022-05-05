@@ -8,9 +8,11 @@ import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
 import Details from './components/details';
 import { useState } from 'react';
+import Add from './components/add';
 
 const AttendanceList: FC = () => {
   const [showDetails, setShowDetails] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
   const paginationProps = {
     showSizeChanger: true,
@@ -100,8 +102,14 @@ const AttendanceList: FC = () => {
     },
   ];
 
+  const handleAdd = (values: any) => {
+    showNotification('Added!');
+    setShowAdd(false);
+    console.log(values);
+  };
+
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => {}}>
+    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => setShowAdd(true)}>
       Add
     </Button>,
     <Button key="export" onClick={() => handleExport()}>
@@ -130,6 +138,7 @@ const AttendanceList: FC = () => {
         close={() => setShowDetails(false)}
         approve={() => handleApprove()}
       />
+      <Add visible={showAdd} close={() => setShowAdd(false)} submit={(v) => handleAdd(v)} />
     </PageContainer>
   );
 };
