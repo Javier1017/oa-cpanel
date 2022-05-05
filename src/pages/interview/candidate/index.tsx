@@ -50,7 +50,7 @@ const IntervewCandidates: FC = () => {
       dataIndex: 'approvalStatus',
       valueEnum: {
         0: {
-          text: 'Pending',
+          text: 'Confirmed',
           color: '#FAAD14',
         },
         1: {

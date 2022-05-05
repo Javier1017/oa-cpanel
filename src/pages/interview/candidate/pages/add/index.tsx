@@ -22,6 +22,7 @@ const AddCandidate: FC = () => {
   const contentList = {
     general: <Profile />,
     screening: <p>content2</p>,
+    interview: <p>intervier</p>,
   };
 
   const [activeTabKey1, setActiveTabKey1] = useState('general');
@@ -33,7 +34,7 @@ const AddCandidate: FC = () => {
   return (
     <>
       <Card
-        style={{ width: '100%' }}
+        style={{ width: '100%', backgroundColor: 'white', padding: '1rem' }}
         tabList={tabList}
         activeTabKey={activeTabKey1}
         onTabChange={(key) => {

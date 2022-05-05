@@ -32,28 +32,30 @@ function getInterviewCandidates(req: Request, res: Response, u: string) {
   if (!realUrl || Object.prototype.toString.call(realUrl) !== '[object String]') {
     realUrl = req.url;
   }
-  const { current = 1, pageSize = 10 } = req.query;
+
   const params = parse(realUrl, true).query as unknown as Params;
-  console.log({ params });
+  // creata a new object, filterObj containing the filter queries only by destructuring current and pageSize. use this in filter query
+  const { current = 1, pageSize = 10, ...filterObj } = params;
 
   let dataSource = [...tableListDataSource].slice(
     ((current as number) - 1) * (pageSize as number),
     (current as number) * (pageSize as number),
   );
 
-  // if (Object.keys(params).length > 0) {
-  //   dataSource = dataSource.filter((item) => {
-  //     return Object.keys(params).some((key) => {
-  //       if (!params[key]) {
-  //         return true;
-  //       }
-  //       if (params[key].includes(`${item[key]}`)) {
-  //         return true;
-  //       }
-  //       return false;
-  //     });
-  //   });
-  // }
+  // filter query
+  if (Object.keys(filterObj).length > 0) {
+    dataSource = dataSource.filter((item) => {
+      return Object.keys(filterObj).some((key) => {
+        if (!filterObj[key]) {
+          return true;
+        }
+        if (filterObj[key].includes(`${item[key]}`)) {
+          return true;
+        }
+        return false;
+      });
+    });
+  }
 
   let finalPageSize = 10;
   if (params.pageSize) {
