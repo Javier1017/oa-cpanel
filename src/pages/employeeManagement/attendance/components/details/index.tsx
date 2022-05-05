@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import { data, time } from './data';
 import './index.less';
+import Edit from '../edit';
 
 interface Props {
   visible: boolean;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const AttendanceDetails: FC<Props> = ({ visible, close, approve }) => {
-  const [, setShowEdit] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   const renderFooter = [
     <Button key="approve" type="primary" danger onClick={() => approve()}>
@@ -46,6 +47,13 @@ const AttendanceDetails: FC<Props> = ({ visible, close, approve }) => {
     return <span className="time-details-title">Punched Time Details:</span>;
   };
 
+  const handleSubmitEdit = (values: any) => {
+    setShowEdit(false);
+    console.log(values);
+    close();
+    console.log('saved');
+  };
+
   return (
     <>
       <Modal
@@ -70,6 +78,11 @@ const AttendanceDetails: FC<Props> = ({ visible, close, approve }) => {
             labelStyle={{ paddingLeft: '50px' }}
           />
         </div>
+        <Edit
+          visible={showEdit}
+          close={() => setShowEdit(false)}
+          submit={(values) => handleSubmitEdit(values)}
+        />
       </Modal>
     </>
   );
