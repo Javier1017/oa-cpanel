@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Button,Switch } from 'antd';
+import { Button, Switch } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { AnnouncementItem, Pagination } from './data';

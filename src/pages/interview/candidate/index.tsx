@@ -50,7 +50,7 @@ const IntervewCandidates: FC = () => {
       dataIndex: 'approvalStatus',
       valueEnum: {
         0: {
-          text: 'Pending',
+          text: 'Confirmed',
           color: '#FAAD14',
         },
         1: {
@@ -90,9 +90,6 @@ const IntervewCandidates: FC = () => {
       <ProTable<PositionAppliedItem, Pagination>
         rowKey="key"
         cardBordered={true}
-        search={{
-          labelWidth: 120,
-        }}
         pagination={paginationProps}
         request={interviewCandidates}
         columns={columns}

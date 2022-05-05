@@ -29,7 +29,7 @@ const Library: FC = () => {
     {
       title: 'Descriptions',
       dataIndex: 'desc',
-      search: false
+      search: false,
     },
     {
       title: 'Date',

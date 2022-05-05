@@ -2,7 +2,7 @@ export type AssetItem = {
   key: number;
   asset: string;
   desc: string;
-  status:boolean
+  status: boolean;
 };
 
 export type Pagination = {

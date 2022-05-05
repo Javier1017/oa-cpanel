@@ -23,7 +23,8 @@ export type Params = {
   desc?: string;
   key?: number;
   pageSize?: number;
-  currentPage?: number;
+  current?: number;
   filter?: Record<string, any[]>;
   sorter?: Record<string, any>;
+  candidateName: string;
 };
