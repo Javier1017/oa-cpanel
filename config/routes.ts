@@ -120,6 +120,11 @@
                 path: 'employeeManagement/assets',
                 component: './employeeManagement/assets',
               },
+              {
+                name: 'Work Shift',
+                path: 'employeeManagement/work-shift',
+                component: './employeeManagement/workshift',
+              },
             ],
           },
         ],
