@@ -1,13 +1,17 @@
 import type { FC } from 'react';
-import { Button, Switch } from 'antd';
+import { useState } from 'react';
+import { Button,Switch } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { AnnouncementItem, Pagination } from './data';
 import { annoucement } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import AnnoucementModal from './component/annoucementModal';
 
 const Announcement: FC = () => {
+  const [title, setTitle] = useState('');
+  const [modal, setModal] = useState(false);
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -58,13 +62,13 @@ const Announcement: FC = () => {
       hideInSearch: true,
       render: (dom, entity) => {
         console.log(entity);
-        return <a onClick={() => {}}>View</a>;
+        return <a onClick={() => {setModal(true); setTitle('Announcement Details');}}>View</a>;
       },
     },
   ];
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />}>
+    <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Announcement Details');}}>
       Add
     </Button>,
     <Button key="export">Export</Button>,
@@ -72,6 +76,12 @@ const Announcement: FC = () => {
 
   return (
     <PageContainer title={false}>
+      <AnnoucementModal
+        title={title}
+        visible={modal}
+        onCancel={() => setModal(false)}
+      />
+      
       <ProTable<AnnouncementItem, Pagination>
         // headerTitle="查询表格"
         // actionRef={actionRef}

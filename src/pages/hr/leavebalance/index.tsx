@@ -70,9 +70,9 @@ const LeaveTransaction: FC = () => {
   };
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />}>
-      Add
-    </Button>,
+    // <Button type="primary" key="add" icon={<PlusOutlined />}>
+    //   Add
+    // </Button>,
     <Button key="export" onClick={exportData}>
       Export
     </Button>,

@@ -119,5 +119,5 @@ function getAssets(req: Request, res: Response, u: string) {
 }
 
 export default {
-  'GET /api/assets': getAssets,
+  'GET /api/assetsSetup': getAssets,
 };
