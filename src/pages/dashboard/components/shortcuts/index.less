@@ -1,0 +1,33 @@
+@import '~antd/es/style/themes/default.less';
+
+.dashboard__shortcuts {
+  background: #fff;
+  &__header {
+    padding: 10px 30px;
+    .ant-typography {
+      margin-bottom: 0;
+    }
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    &:nth-of-type(4n + 1) {
+      // every fourth, starting from the first
+      border-left: 0;
+    }
+    &:nth-of-type(-n + 4) {
+      // first four
+      border-bottom: 0;
+    }
+    img {
+      margin-right: 10px;
+    }
+    .ant-typography {
+      margin-bottom: 0;
+    }
+  }
+}
