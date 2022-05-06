@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { useState } from 'react';
 import Card from 'antd/lib/card';
 import Profile from '@/pages/interview/candidate/components/profile';
+import Screening from '@/pages/interview/candidate/components/screening';
 
 const AddCandidate: FC = () => {
   const tabList = [
@@ -21,7 +22,7 @@ const AddCandidate: FC = () => {
 
   const contentList = {
     general: <Profile />,
-    screening: <p>content2</p>,
+    screening: <Screening />,
     interview: <p>intervier</p>,
   };
 
