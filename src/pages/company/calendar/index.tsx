@@ -9,12 +9,15 @@ import type { MasterItem, masterPagination } from './master/data';
 import { masterlist } from './master/service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import MasterModal from './component/masterModal';
+import CalendarModal from './component/calendarModal';
 import './index.less';
 
 const Calendar: FC = () => {
   const [activeKey, setActiveKey] = useState('master');
   const [title, setTitle] = useState('');
-  const [modal, setModal] = useState(false);
+  const [master, setMaster] = useState(false);
+  const [calendar, setCalendar] = useState(false);
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -54,7 +57,7 @@ const Calendar: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModal(true); setTitle('Edit Attendance Type');}}>Edit</a>;
+        return <a onClick={() => {setCalendar(true); setTitle('Edit Calendar Masterlist');}}>Edit</a>;
       },
     },
   ];
@@ -87,7 +90,7 @@ const Calendar: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModal(true); setTitle('Edit Attendance Type');}}>Edit</a>;
+        return <a onClick={() => {setCalendar(true);}}>Edit</a>;
       },
     },
   ];
@@ -95,6 +98,15 @@ const Calendar: FC = () => {
 
   return (
     <PageContainer title={false}>
+      <MasterModal
+        title={title}
+        visible={master}
+        onCancel={() => setMaster(false)}
+      />
+      <CalendarModal
+        visible={calendar}
+        onCancel={() => setCalendar(false)}
+      />
       {activeKey == 'master' &&
         <ProTable<MasterItem, masterPagination>
           // headerTitle="查询表格"
@@ -124,7 +136,7 @@ const Calendar: FC = () => {
               ]
             },
             actions: [
-              <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Attendance Type');}}>
+              <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setMaster(true); setTitle('Add Calendar Masterlist');}}>
               Add
               </Button>
             ],
@@ -160,7 +172,7 @@ const Calendar: FC = () => {
             ]
           },
           actions: [
-            <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Attendance Type');}}>
+            <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setCalendar(true);}}>
             Add
             </Button>
           ],

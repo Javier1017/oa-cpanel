@@ -57,7 +57,7 @@ const ClaimSetup: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModalType(true); setTitleType('Edit Claim Type');}}>Edit</a>;
+        return <a onClick={() => { setModalType(true); setTitleType('Edit Claim Type'); }}>Edit</a>;
       },
     },
   ];
@@ -90,7 +90,7 @@ const ClaimSetup: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModal(true); setTitle('Edit Claim Group');}}>Edit</a>;
+        return <a onClick={() => { setModal(true); setTitle('Edit Claim Group'); }}>Edit</a>;
       },
     },
   ];
@@ -138,48 +138,48 @@ const ClaimSetup: FC = () => {
               ],
             },
             actions: [
-              <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModalType(true); setTitleType('Add Claim Type');}}>
-              Add
+              <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => { setModalType(true); setTitleType('Add Claim Type'); }}>
+                Add
               </Button>
             ],
           }}
         />
       }
-      {activeKey == 'group' && 
+      {activeKey == 'group' &&
         <ProTable<GroupItem, groupPagination>
-        // headerTitle="查询表格"
-        // actionRef={actionRef}
-        rowKey="key"
-        search={false}
-        cardBordered={true}
-        pagination={paginationProps}
-        request={claimgroup}
-        columns={columnsGroup}
-        options={false}
-        toolbar={{
-          multipleLine: true,
-          menu: {
-            type: 'tab',
-            activeKey: activeKey,
-            onChange: (key) => setActiveKey(key as string),
-            items: [
-              {
-                key: 'type',
-                label: 'Claim Type',
-              },
-              {
-                key: 'group',
-                label: 'Claim Group',
-              },
+          // headerTitle="查询表格"
+          // actionRef={actionRef}
+          rowKey="key"
+          search={false}
+          cardBordered={true}
+          pagination={paginationProps}
+          request={claimgroup}
+          columns={columnsGroup}
+          options={false}
+          toolbar={{
+            multipleLine: true,
+            menu: {
+              type: 'tab',
+              activeKey: activeKey,
+              onChange: (key) => setActiveKey(key as string),
+              items: [
+                {
+                  key: 'type',
+                  label: 'Claim Type',
+                },
+                {
+                  key: 'group',
+                  label: 'Claim Group',
+                },
+              ],
+            },
+            actions: [
+              <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => { setModal(true); setTitle('Add Claim Group'); }}>
+                Add
+              </Button>
             ],
-          },
-          actions: [
-            <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Claim Group');}}>
-            Add
-            </Button>
-          ],
-        }}
-      />}
+          }}
+        />}
     </PageContainer>
   );
 };

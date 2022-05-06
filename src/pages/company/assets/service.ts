@@ -16,7 +16,7 @@ export async function assets(
     /** 列表的内容总数 */
     total?: number;
     success?: boolean;
-  }>('/api/assets', {
+  }>('/api/assetsSetup', {
     method: 'GET',
     params: {
       ...params,
