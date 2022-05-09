@@ -10,11 +10,15 @@ import { leavegroup } from './leaveGroup/service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
 import LeaveGroup from './component/leaveGroup';
+import LeaveType from './component/leaveType';
+
 
 const ClaimSetup: FC = () => {
   const [activeKey, setActiveKey] = useState('type');
   const [title, setTitle] = useState('');
   const [modal, setModal] = useState(false);
+  const [typeTitle, setTypeTitle] = useState('');
+  const [typeModal, setTypeModal] = useState(false);
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -62,7 +66,7 @@ const ClaimSetup: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModal(true); setTitle('Edit');}}>Edit</a>;
+        return <a onClick={() => { setTypeModal(true); setTypeTitle('View Leave Type'); }}>View</a>;
       },
     },
   ];
@@ -95,7 +99,7 @@ const ClaimSetup: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        return <a onClick={() => {setModal(true); setTitle('Edit Leave Group');}}>Edit</a>;
+        return <a onClick={() => { setModal(true); setTitle('Edit Leave Group'); }}>Edit</a>;
       },
     },
   ];
@@ -108,6 +112,12 @@ const ClaimSetup: FC = () => {
         visible={modal}
         onCancel={() => setModal(false)}
       />
+      <LeaveType
+        title={typeTitle}
+        typeVisible={typeModal}
+        onCancel={() => setTypeModal(false)}
+      />
+
       {activeKey == 'type' &&
         <ProTable<TypeItem, typePagination>
           // headerTitle="查询表格"
@@ -137,48 +147,48 @@ const ClaimSetup: FC = () => {
               ],
             },
             actions: [
-              <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add');}}>
-              Add
+              <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => { setTypeModal(true); setTypeTitle('Add Leave Type'); }}>
+                Add
               </Button>
             ],
           }}
         />
       }
-      {activeKey == 'group' && 
+      {activeKey == 'group' &&
         <ProTable<GroupItem, groupPagination>
-        // headerTitle="查询表格"
-        // actionRef={actionRef}
-        rowKey="key"
-        search={false}
-        cardBordered={true}
-        pagination={paginationProps}
-        request={leavegroup}
-        columns={columnsGroup}
-        options={false}
-        toolbar={{
-          multipleLine: true,
-          menu: {
-            type: 'tab',
-            activeKey: activeKey,
-            onChange: (key) => setActiveKey(key as string),
-            items: [
-              {
-                key: 'type',
-                label: 'Leave Type',
-              },
-              {
-                key: 'group',
-                label: 'Leave Group',
-              },
+          // headerTitle="查询表格"
+          // actionRef={actionRef}
+          rowKey="key"
+          search={false}
+          cardBordered={true}
+          pagination={paginationProps}
+          request={leavegroup}
+          columns={columnsGroup}
+          options={false}
+          toolbar={{
+            multipleLine: true,
+            menu: {
+              type: 'tab',
+              activeKey: activeKey,
+              onChange: (key) => setActiveKey(key as string),
+              items: [
+                {
+                  key: 'type',
+                  label: 'Leave Type',
+                },
+                {
+                  key: 'group',
+                  label: 'Leave Group',
+                },
+              ],
+            },
+            actions: [
+              <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => { setModal(true); setTitle('Add Leave Group'); }}>
+                Add
+              </Button>
             ],
-          },
-          actions: [
-            <Button type="primary" key="add" icon={<PlusOutlined/>} onClick={() => {setModal(true); setTitle('Add Leave Group');}}>
-            Add
-            </Button>
-          ],
-        }}
-      />}
+          }}
+        />}
     </PageContainer>
   );
 };
