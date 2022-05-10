@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { Row, Col } from 'antd';
 import TimeLog from './components/time-log';
 import Shortcuts from './components/shortcuts';
+import Leaves from './components/leaves';
 
 const Dashboard: FC = () => {
   return (
@@ -12,6 +13,9 @@ const Dashboard: FC = () => {
         </Col>
         <Col span={24}>
           <Shortcuts />
+        </Col>
+        <Col span={24}>
+          <Leaves />
         </Col>
       </Row>
     </>
