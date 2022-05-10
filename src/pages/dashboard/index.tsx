@@ -3,6 +3,7 @@ import { Row, Col } from 'antd';
 import TimeLog from './components/time-log';
 import Shortcuts from './components/shortcuts';
 import Leaves from './components/leaves';
+import AttendanceLog from './components/attendanceLog';
 
 const Dashboard: FC = () => {
   return (
@@ -16,6 +17,9 @@ const Dashboard: FC = () => {
         </Col>
         <Col span={24}>
           <Leaves />
+        </Col>
+        <Col span={24}>
+          <AttendanceLog />
         </Col>
       </Row>
     </>
