@@ -1,13 +1,19 @@
 import type { FC } from 'react';
-import { Button } from 'antd';
+import { useState } from 'react';
+import { Button, notification } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { RemunerationItem, Pagination } from './data';
 import { remunerations } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import AddRemuneration from './components/add';
+import ViewRemuneration from './components/view';
 
 const Commission: FC = () => {
+  const [showAdd, setShowAdd] = useState(false);
+  const [showView, setShowView] = useState(false);
+
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -77,16 +83,35 @@ const Commission: FC = () => {
       hideInSearch: true,
       render: (dom, entity) => {
         console.log(dom, entity);
-        return <a onClick={() => {}}>View</a>;
+        return <a onClick={() => setShowView(true)}>View</a>;
       },
     },
   ];
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => {}}>
+    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => setShowAdd(true)}>
       Add
     </Button>,
   ];
+
+  const showNotification = (message: string) => {
+    notification.success({
+      message,
+      duration: 2,
+    });
+  };
+
+  const handleAdd = (values: any) => {
+    showNotification('Added!');
+    setShowAdd(false);
+    console.log(values);
+  };
+
+  const handleEdit = (values: any) => {
+    showNotification('Updated!');
+    setShowView(false);
+    console.log(values);
+  };
 
   return (
     <PageContainer title={false}>
@@ -104,6 +129,8 @@ const Commission: FC = () => {
         options={false}
         toolBarRender={() => toolBar}
       />
+      <AddRemuneration visible={showAdd} close={() => setShowAdd(false)} onSubmit={handleAdd} />
+      <ViewRemuneration visible={showView} close={() => setShowView(false)} onSubmit={handleEdit} />
     </PageContainer>
   );
 };

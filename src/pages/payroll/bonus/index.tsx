@@ -92,11 +92,13 @@ const Commission: FC = () => {
 
   const handleAdd = (values: any) => {
     console.log(values);
+    setShowAdd(false);
     showNotification('Added!');
   };
 
   const handleEdit = (values: any) => {
     console.log(values);
+    setShowView(false);
     showNotification('Updated!');
   };
 

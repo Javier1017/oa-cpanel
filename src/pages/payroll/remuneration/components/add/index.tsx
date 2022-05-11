@@ -7,7 +7,6 @@ import {
   ProFormDigit,
 } from '@ant-design/pro-form';
 import type { FC } from 'react';
-import { useState } from 'react';
 
 interface Props {
   visible: boolean;
@@ -15,9 +14,7 @@ interface Props {
   onSubmit: (values: any) => void;
 }
 
-const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
-  const [isEditing, setIsEditing] = useState(false);
-
+const AddBonus: FC<Props> = ({ visible, close, onSubmit }) => {
   const waitTime = () => {
     return new Promise((resolve) => {
       setTimeout(() => resolve(true), 3000);
@@ -25,35 +22,23 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
   };
 
   const handleSubmit = async (values: any) => {
-    if (isEditing) {
-      await waitTime();
-      onSubmit(values);
-    } else {
-      setIsEditing(true);
-    }
-  };
-
-  const sampleValues = {
-    date: '01-31-1995',
-    sequence: '1',
-    employee: 'Test Employee 1',
+    await waitTime();
+    onSubmit(values);
   };
 
   return (
     <ModalForm
       visible={visible}
       onFinish={handleSubmit}
-      title="View Bonus"
+      title="Add Additional Remuneration"
       layout="horizontal"
-      onVisibleChange={() => setIsEditing(false)}
       modalProps={{
-        okText: isEditing ? 'Confirm' : 'Edit',
+        okText: 'Confirm',
         cancelText: '',
         destroyOnClose: true,
         onCancel: () => close(),
       }}
       grid
-      initialValues={sampleValues}
     >
       <ProFormDatePicker
         name="date"
@@ -61,7 +46,6 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
         colProps={{ span: 22 }}
         labelCol={{ span: 6 }}
         rules={[{ required: true, message: 'Date is required.' }]}
-        disabled={!isEditing}
       />
       <ProFormSelect
         name="sequence"
@@ -73,7 +57,6 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
           2: 'Sequence 2',
         }}
         rules={[{ required: true, message: 'Sequence is required.' }]}
-        disabled={!isEditing}
       />
       <ProFormText
         name="employee"
@@ -81,7 +64,17 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
         colProps={{ span: 22 }}
         labelCol={{ span: 6 }}
         rules={[{ required: true, message: 'Employee is required.' }]}
-        disabled={!isEditing}
+      />
+      <ProFormSelect
+        name="type"
+        label="Remuneration Type"
+        colProps={{ span: 22 }}
+        labelCol={{ span: 6 }}
+        valueEnum={{
+          1: 'Remuneration Type 1',
+          2: 'Remuneration Type 2',
+        }}
+        rules={[{ required: true, message: 'Remuneration Type is required.' }]}
       />
       <ProFormTextArea
         fieldProps={{
@@ -91,14 +84,6 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
         label="Remarks"
         colProps={{ span: 22 }}
         labelCol={{ span: 6 }}
-        disabled={!isEditing}
-      />
-      <ProFormText
-        name="wages"
-        label="Wages"
-        disabled
-        colProps={{ span: 22 }}
-        labelCol={{ span: 6 }}
       />
       <ProFormDigit
         name="amount"
@@ -106,10 +91,9 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
         min={1}
         colProps={{ span: 22 }}
         labelCol={{ span: 6 }}
-        disabled={!isEditing}
       />
     </ModalForm>
   );
 };
 
-export default ViewBonus;
+export default AddBonus;

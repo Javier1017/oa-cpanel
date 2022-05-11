@@ -15,7 +15,7 @@ interface Props {
   onSubmit: (values: any) => void;
 }
 
-const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
+const AddBonus: FC<Props> = ({ visible, close, onSubmit }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const waitTime = () => {
@@ -37,13 +37,14 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
     date: '01-31-1995',
     sequence: '1',
     employee: 'Test Employee 1',
+    remunerationType: '1',
   };
 
   return (
     <ModalForm
       visible={visible}
       onFinish={handleSubmit}
-      title="View Bonus"
+      title="View Additional Remuneration"
       layout="horizontal"
       onVisibleChange={() => setIsEditing(false)}
       modalProps={{
@@ -83,6 +84,18 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
         rules={[{ required: true, message: 'Employee is required.' }]}
         disabled={!isEditing}
       />
+      <ProFormSelect
+        name="remunerationType"
+        label="Remuneration Type"
+        colProps={{ span: 22 }}
+        labelCol={{ span: 6 }}
+        valueEnum={{
+          1: 'Remuneration Type 1',
+          2: 'Remuneration Type 2',
+        }}
+        rules={[{ required: true, message: 'Remuneration Type is required.' }]}
+        disabled={!isEditing}
+      />
       <ProFormTextArea
         fieldProps={{
           autoSize: { minRows: 3, maxRows: 6 },
@@ -92,13 +105,6 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
         colProps={{ span: 22 }}
         labelCol={{ span: 6 }}
         disabled={!isEditing}
-      />
-      <ProFormText
-        name="wages"
-        label="Wages"
-        disabled
-        colProps={{ span: 22 }}
-        labelCol={{ span: 6 }}
       />
       <ProFormDigit
         name="amount"
@@ -112,4 +118,4 @@ const ViewBonus: FC<Props> = ({ visible, close, onSubmit }) => {
   );
 };
 
-export default ViewBonus;
+export default AddBonus;
