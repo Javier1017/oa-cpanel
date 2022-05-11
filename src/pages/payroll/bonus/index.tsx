@@ -8,9 +8,11 @@ import { bonus } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
 import AddBonus from './components/add';
+import ViewBonus from './components/view';
 
 const Commission: FC = () => {
   const [showAdd, setShowAdd] = useState(false);
+  const [showView, setShowView] = useState(false);
 
   const paginationProps = {
     showSizeChanger: true,
@@ -70,7 +72,7 @@ const Commission: FC = () => {
       hideInSearch: true,
       render: (dom, entity) => {
         console.log(dom, entity);
-        return <a onClick={() => {}}>View</a>;
+        return <a onClick={() => setShowView(true)}>View</a>;
       },
     },
   ];
@@ -93,6 +95,11 @@ const Commission: FC = () => {
     showNotification('Added!');
   };
 
+  const handleEdit = (values: any) => {
+    console.log(values);
+    showNotification('Updated!');
+  };
+
   return (
     <PageContainer title={false}>
       <ProTable<BonusItem, Pagination>
@@ -110,6 +117,7 @@ const Commission: FC = () => {
         toolBarRender={() => toolBar}
       />
       <AddBonus visible={showAdd} close={() => setShowAdd(false)} onSubmit={handleAdd} />
+      <ViewBonus visible={showView} close={() => setShowView(false)} onSubmit={handleEdit} />
     </PageContainer>
   );
 };
