@@ -1,13 +1,17 @@
 import type { FC } from 'react';
-import { Button } from 'antd';
+import { useState } from 'react';
+import { Button, notification } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { BonusItem, Pagination } from './data';
 import { bonus } from './service';
 import type { ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
+import AddBonus from './components/add';
 
 const Commission: FC = () => {
+  const [showAdd, setShowAdd] = useState(false);
+
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -72,10 +76,22 @@ const Commission: FC = () => {
   ];
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => {}}>
+    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => setShowAdd(true)}>
       Add
     </Button>,
   ];
+
+  const showNotification = (message: string) => {
+    notification.success({
+      message,
+      duration: 2,
+    });
+  };
+
+  const handleAdd = (values: any) => {
+    console.log(values);
+    showNotification('Added!');
+  };
 
   return (
     <PageContainer title={false}>
@@ -93,6 +109,7 @@ const Commission: FC = () => {
         options={false}
         toolBarRender={() => toolBar}
       />
+      <AddBonus visible={showAdd} close={() => setShowAdd(false)} onSubmit={handleAdd} />
     </PageContainer>
   );
 };
