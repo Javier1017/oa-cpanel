@@ -10,7 +10,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import AddBonus from './components/add';
 import ViewBonus from './components/view';
 
-const Commission: FC = () => {
+const Bonus: FC = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [showView, setShowView] = useState(false);
 
@@ -124,4 +124,4 @@ const Commission: FC = () => {
   );
 };
 
-export default Commission;
+export default Bonus;

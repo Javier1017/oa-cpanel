@@ -15,7 +15,7 @@ interface Props {
   onSubmit: (values: any) => void;
 }
 
-const AddBonus: FC<Props> = ({ visible, close, onSubmit }) => {
+const ViewRemuneration: FC<Props> = ({ visible, close, onSubmit }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const waitTime = () => {
@@ -118,4 +118,4 @@ const AddBonus: FC<Props> = ({ visible, close, onSubmit }) => {
   );
 };
 
-export default AddBonus;
+export default ViewRemuneration;

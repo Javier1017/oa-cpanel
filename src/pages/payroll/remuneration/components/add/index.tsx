@@ -14,7 +14,7 @@ interface Props {
   onSubmit: (values: any) => void;
 }
 
-const AddBonus: FC<Props> = ({ visible, close, onSubmit }) => {
+const AddRemuneration: FC<Props> = ({ visible, close, onSubmit }) => {
   const waitTime = () => {
     return new Promise((resolve) => {
       setTimeout(() => resolve(true), 3000);
@@ -96,4 +96,4 @@ const AddBonus: FC<Props> = ({ visible, close, onSubmit }) => {
   );
 };
 
-export default AddBonus;
+export default AddRemuneration;

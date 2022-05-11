@@ -10,7 +10,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import AddRemuneration from './components/add';
 import ViewRemuneration from './components/view';
 
-const Commission: FC = () => {
+const Remuneration: FC = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [showView, setShowView] = useState(false);
 
@@ -135,4 +135,4 @@ const Commission: FC = () => {
   );
 };
 
-export default Commission;
+export default Remuneration;
