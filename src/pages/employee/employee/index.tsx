@@ -11,6 +11,10 @@ import EmployeeModal from './component';
 
 const EmployeeSetup: FC = () => {
   const [modal, setModal] = useState(false);
+  const [type, setType] = useState('');
+  const updateModal = (visible: boolean): void => {
+    setModal(visible)
+  }
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
@@ -87,14 +91,13 @@ const EmployeeSetup: FC = () => {
       dataIndex: 'id',
       hideInSearch: true,
       render: (dom, entity) => {
-        console.log(entity);
-        return <a onClick={() => {}}>View</a>;
+        return <a onClick={() => { setModal(true); setType('view'); }}>View</a>;
       },
     },
   ];
 
   const toolBar = [
-    <Button type="primary" key="add" icon={<PlusOutlined />}  onClick={() => {setModal(true);}}>
+    <Button type="primary" key="add" icon={<PlusOutlined />} onClick={() => { setModal(true); setType('add'); }}>
       Add
     </Button>,
     <Button key="export">Export</Button>,
@@ -102,12 +105,14 @@ const EmployeeSetup: FC = () => {
 
   return (
     <PageContainer title={false}>
-      {modal ? 
+      {modal ?
         <EmployeeModal
           visible={modal}
-          onCancel={() => setModal(false)}>
+          type={type}
+          onCancel={() => setModal(false)}
+          updateModal={updateModal}>
         </EmployeeModal>
-      :
+        :
         <ProTable<EmployeeSetupItem, Pagination>
           // headerTitle="查询表格"
           // actionRef={actionRef}

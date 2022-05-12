@@ -1,53 +1,46 @@
 import { FC, useState } from 'react';
 import React from 'react';
-
-import { PageContainer } from '@ant-design/pro-layout';
 import ProCard from '@ant-design/pro-card';
-import { Button } from 'antd';
 import General from './general';
+import Payroll from './payroll';
+
 
 interface CollectionCreateFormProps {
   visible: boolean;
+  type: string;
   onCancel: () => void;
+  updateModal: (arg: boolean) => void
 }
-const CompanyProfile: React.FC<CollectionCreateFormProps>  = ({visible, onCancel}) => {
 
-const [activeKey, setActiveKey] = useState('general');
+const CompanyProfile: React.FC<CollectionCreateFormProps> = ({ visible, type, onCancel, updateModal }) => {
+  const updateVisible = (visible: boolean): void => {
+    updateModal(visible)
+  }
+
+  const [activeKey, setActiveKey] = useState('general');
   return (
     // <PageContainer title={false} >
-      <ProCard
+    <ProCard
 
-        // extra={
-        //   <Button type="primary" key="edit" >
-        //   Edit
-        // </Button>
-              // }
-        tabs={{
-          activeKey: activeKey,
-          onChange: (key) => {
-            setActiveKey(key);
-          },
-        }}
-      >
-        <ProCard.TabPane key="general" tab="General">
-          <General></General>
-        </ProCard.TabPane>
-        <ProCard.TabPane key="info" tab="Payroll Info">
-          <General></General>
-        </ProCard.TabPane>
-        {/* <ProCard.TabPane key="sss" tab="SSS">
-          <SSS></SSS>
-        </ProCard.TabPane>
-        <ProCard.TabPane key="tax" tab="Tax">
-          <Tax></Tax>
-        </ProCard.TabPane>
-        <ProCard.TabPane key="phic" tab="PHIC">
-          <PHIC></PHIC>
-        </ProCard.TabPane>
-        <ProCard.TabPane key="hdmf" tab="HDMF">
-          <HDMF></HDMF>
-        </ProCard.TabPane> */}
-      </ProCard>
+      // extra={
+      //   <Button type="primary" key="edit" >
+      //   Edit
+      // </Button>
+      // }
+      tabs={{
+        activeKey: activeKey,
+        onChange: (key) => {
+          setActiveKey(key);
+        },
+      }}
+    >
+      <ProCard.TabPane key="general" tab="General">
+        <General visible={visible} type={type} updateVisible={updateVisible} ></General>
+      </ProCard.TabPane>
+      <ProCard.TabPane key="info" tab="Payroll Info">
+        <Payroll visible={visible} type={type} updateVisible={updateVisible}></Payroll>
+      </ProCard.TabPane>
+    </ProCard>
     // </PageContainer>
   );
 };
